@@ -1,0 +1,11 @@
+#! /bin/bash
+
+versions=(latest 2.0.0rc0)
+extras=(-py3-jupyter -gpu-py3-jupyter)
+
+for v in ${versions[@]}; do
+    for e in ${extras[@]}; do
+	tag=${v}${e}
+	docker build --build-arg basetag=${tag} -t lukasnellen/tensorflow:${tag} .
+    done
+done
